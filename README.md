@@ -1,3 +1,5 @@
+
+```
 git pull
 git add --all:/
 git commit --m"(...)"
@@ -7,3 +9,4 @@ git push
 git clone "url"
 cd "part"
 notepad "sub_part"
+```
