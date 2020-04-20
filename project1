@@ -1,0 +1,42 @@
+float[] a;
+float[] b; 
+float[] c;
+float[] d;
+int n = 31;
+float[] o;
+float z = 0.01;
+float x = 1;
+float y = 100;
+
+void setup() {
+  frameRate(100);
+  size(600, 600);
+  background(50);
+  a = new float[n];
+  b = new float[n]; 
+  c = new float[n];
+  d = new float[n];
+  o = new float[n];
+  for (int i=0; i<n; i++) {
+    a[i] = width/n * i;
+    b[i] = height/2; 
+    c[i] = width/n * i;
+    d[i] = height/2;
+    o[i] = i;
+  }
+}
+
+void draw() {
+  background(50);
+  strokeWeight(1);
+  for (int i=0; i<n; i++) {
+    b[i] = tan(o[i] / x) * y + height/2;
+    stroke(255);
+    point(a[i], b[i]); 
+    d[i] = (cos(o[i] * x) * y) + height/2;
+    stroke(255);
+    point(c[i], d[i]); 
+    o[i] -= z;
+    line(a[i],b[i],c[i], d[i]);
+  }
+}
