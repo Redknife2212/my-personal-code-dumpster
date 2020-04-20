@@ -2,11 +2,16 @@ float[] a;
 float[] b; 
 float[] c;
 float[] d;
-int n = 31;
+float[] e;
+float[] f; 
+float[] g;
+float[] h;
+int n = 300;
 float[] o;
-float z = 0.01;
-float x = 1;
-float y = 100;
+float[] p;
+float z = 1;
+float x = 20;
+float y = -100;
 
 void setup() {
   frameRate(100);
@@ -16,13 +21,22 @@ void setup() {
   b = new float[n]; 
   c = new float[n];
   d = new float[n];
+  e = new float[n];
+  f = new float[n]; 
+  g = new float[n];
+  h = new float[n];
   o = new float[n];
   for (int i=0; i<n; i++) {
     a[i] = width/n * i;
     b[i] = height/2; 
     c[i] = width/n * i;
     d[i] = height/2;
+    e[i] = width/n * i;
+    f[i] = height/2; 
+    g[i] = width/n * i;
+    h[i] = height/2;
     o[i] = i;
+    p[i] = i;
   }
 }
 
@@ -30,13 +44,20 @@ void draw() {
   background(50);
   strokeWeight(1);
   for (int i=0; i<n; i++) {
-    b[i] = tan(o[i] / x) * y + height/2;
+    b[i] = sin(o[i] / x) * y + height/2;
     stroke(255);
     point(a[i], b[i]); 
-    d[i] = (cos(o[i] * x) * y) + height/2;
+    d[i] = (cos(o[i] / x) * y) + height/2;
     stroke(255);
     point(c[i], d[i]); 
-    o[i] -= z;
+    o[i] += z;
     line(a[i],b[i],c[i], d[i]);
+    f[i] = sin(p[i] / x) * y + height/2;
+    stroke(255);
+    point(a[i], b[i]); 
+    h[i] = (cos(p[i] / x) * y) + height/2;
+    stroke(255);
+    point(c[i], d[i]); 
+    p[i] += z;
   }
 }
