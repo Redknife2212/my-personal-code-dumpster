@@ -1,0 +1,42 @@
+float[] a;
+float min = 0;
+float s = 100;
+float r = 0;
+int g = 0;
+int n = 3;
+
+void setup() {
+  frameRate(100);
+  size(600, 600);
+  background(0);
+  n += 1;
+  a = new float[n];
+  for (int i=0; i<n; i++) {
+    a[i] = 0;
+  }
+}
+
+void draw() {
+  if (mousePressed) {
+    if (r == 1) {
+      background(0);
+        g = 0;
+        g += random(min, n);
+        
+        if (g == 0) draw();
+      for (int i=0; i<n; i++) {
+        if (g == i)
+        {
+          if (a[i] == 1) draw();
+          a[i] = 1;
+        }
+      }
+        textSize(s);
+        text(g, width/2, height/2);
+      
+    }
+  } else { 
+    r=0;
+  }
+  r+=1;
+}
