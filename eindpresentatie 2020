@@ -1,39 +1,49 @@
 float[] x;
 float[] y;
 float[] a;
+float[] b;
+float[] amp;
 float[] h;
 float[] am;
-float f = 3 * 2;
-int n = 100;
+float f = 3 * 3;
+int n = 1000;
 
 void setup() {
   frameRate(100);
-  size(600,600);
+  fullScreen();
   background(0);
   x = new float[n];
   y = new float[n];
   a = new float[n];
+  b = new float[n];
   am = new float[n];
+  amp = new float[n];
   h = new float[n];
   for (int i=0; i<n; i++) {
     x[i] = width/2;
-    y[i] = width/2;
-    a[i] = 100;
+    y[i] = height/2;
+    a[i] = x[i];
+    b[i] = y[i];
+    amp[i] = 100;
     am[i] = TWO_PI/n * i;
     h[i] = TWO_PI/f/n * i;
   }
 }
 
 void draw() {
-  background(0);
-  for(int i=0; i<n; i++) {
-    x[i] = sin(h[i] * f) * a[i] + width/2;
-    y[i] = cos(h[i] * f) * a[i] + height/2;
+  if(!mousePressed) background(0);
+  for (int i=0; i<n; i++) {
+    a[i] = x[i];
+    b[i] = y[i];
+    x[i] = noise(h[i] * f) * amp[i] + width/2;
+    y[i] = tan(h[i] * f) * amp[i] + height/2;
     fill(255);
     stroke(255);
-    ellipse(x[i],y[i],10,10);
-    line(x[i],y[i],width/2,height/2);
-    a[i] = tan(am[i] * f) * 20 + 100;
-    am[i] += 0.0025;
+    point(x[i], y[i]);
+    //line(x[i],y[i],a[i],b[i]);
+    //line(x[i], y[i], width/2, height/2);
+    amp[i] = noise(am[i] * f) * 10 + 100;
+    h[i] += TWO_PI/n/2;
+    //am[i] += TWO_PI/n/2;
   }
 }
